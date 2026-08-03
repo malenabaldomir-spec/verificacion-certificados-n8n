@@ -1,0 +1,1173 @@
+{
+  "name": "Verificacion de Certificados de Curso",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "airtableTokenApi",
+        "baseId": {
+          "__rl": true,
+          "value": "appmO1C9mQJlqprs3",
+          "mode": "id"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "tblYLwXLLPP4k5NfC",
+          "mode": "id"
+        },
+        "triggerField": "Marca temporal",
+        "additionalFields": {}
+      },
+      "id": "73bbcb3d-28fb-4368-84ac-b00b4c236f6e",
+      "name": "Airtable Trigger - Nueva Solicitud",
+      "type": "n8n-nodes-base.airtableTrigger",
+      "typeVersion": 1,
+      "position": [
+        -4416,
+        432
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "yHTScRCQRozerSHm",
+          "name": "Airtable account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cond-mail",
+              "leftValue": "={{$json.fields.mail}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "74ec5423-6cf1-44e2-826c-e3fc34a9ea5f",
+      "name": "IF - Datos Completos",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -4128,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appmO1C9mQJlqprs3",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblYLwXLLPP4k5NfC",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado": "Error",
+            "id": "={{$json.id}}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Marca temporal",
+              "displayName": "Marca temporal",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre de completo",
+              "displayName": "Nombre de completo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre usuario",
+              "displayName": "Nombre usuario",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "cursos ",
+              "displayName": "cursos ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "TC",
+                  "value": "TC"
+                },
+                {
+                  "name": "ActM5",
+                  "value": "ActM5"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "mail",
+              "displayName": "mail",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Malenab602@gmail.com",
+                  "value": "Malenab602@gmail.com"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "09209314-98c2-49d7-802b-3080c221cf2f",
+      "name": "Airtable - Registrar Error Datos",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        -3888,
+        512
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "yHTScRCQRozerSHm",
+          "name": "Airtable account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appmO1C9mQJlqprs3",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl3xNDrZbNWl1Kb6",
+          "mode": "id"
+        },
+        "filterByFormula": "=",
+        "options": {}
+      },
+      "id": "63c0c8d4-40fd-4faa-a93b-bdc31b554cc7",
+      "name": "Airtable - Buscar Certificado",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        -3904,
+        320
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "yHTScRCQRozerSHm",
+          "name": "Airtable account 3"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Quita tildes para comparar nombres de campo sin importar acentos\nfunction normalizar(str) {\n  return str.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase().trim();\n}\n\nfunction buscarValorPorNombreParcial(fields, palabraClave) {\n  for (const [key, value] of Object.entries(fields || {})) {\n    if (normalizar(key).includes(palabraClave)) return value;\n  }\n  return '';\n}\n\nconst original = $('IF - Datos Completos').item.json;\n\nconst camposLimpios = {};\nfor (const [key, value] of Object.entries(original.fields || {})) {\n  camposLimpios[key.trim()] = value;\n}\n\nconst targetMail = (camposLimpios.mail || '').toString().trim().toLowerCase();\nconst targetCurso = (camposLimpios.cursos || '').toString().trim().toLowerCase();\n\nconst todos = $input.all();\nconst tieneCertificado = todos.some(item => {\nconst f = item.json.fields || item.json;\n  const mail = buscarValorPorNombreParcial(f, 'correo').toString().trim().toLowerCase();\n  const curso = buscarValorPorNombreParcial(f, 'curso').toString().trim().toLowerCase();\n  return mail === targetMail && curso === targetCurso;\n});\n\nreturn [{\n  json: {\n    id: original.id,\n    ...camposLimpios,\n    TieneCertificado: tieneCertificado\n  }\n}];"
+      },
+      "id": "11f4f2e0-458b-485b-9c29-8dfde72a0c97",
+      "name": "Evaluar Resultado Busqueda",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3680,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash: ...generateContent?key=TU_API_KEY_ACA,
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": []
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({contents: [{parts: [{text: \"Eres un asistente de una academia. Redacta un correo breve para \" + $json['Nombre de completo'] + \" sobre el curso \" + $json.cursos + \". Tiene certificado: \" + $json.TieneCertificado + \". Si es true, informa que ya lo tiene. Si es false, confirma la inscripcion y da la bienvenida. Responde solo el cuerpo del correo.\"}]}]}) }}",
+        "options": {}
+      },
+      "id": "cbe2e68e-e04b-445e-8428-6e17cb007c37",
+      "name": "IA - Redactar Mensaje (HTTP Request)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -3456,
+        320
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.candidates?.[0]?.content?.parts?.[0]?.text || '';\nreturn [{\n  json: {\n    ...$('Evaluar Resultado Busqueda').item.json,\n    MensajeIA: raw.trim()\n  }\n}];"
+      },
+      "id": "7b7aeaa2-1f08-4732-8da8-d43848ea9eb5",
+      "name": "Parsear Respuesta IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3232,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cond-tiene-cert",
+              "leftValue": "={{$json.TieneCertificado}}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "eb276f6f-0ba9-4bba-a033-37891c7634ad",
+      "name": "IF - Ya Tiene Certificado",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -3008,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$json.mail}}",
+        "subject": "=Certificado ya emitido - {{$json.cursos}}",
+        "message": "={{$json.MensajeIA}}",
+        "options": {}
+      },
+      "id": "3bea9d55-2a88-4ef0-8f65-c48845f2a036",
+      "name": "Gmail - Aviso Certificado Existente",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -2784,
+        224
+      ],
+      "webhookId": "048a6268-f51c-4919-8095-14b5b92fa27b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mAUT1MPUfT5TuwXw",
+          "name": "Gmail account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appmO1C9mQJlqprs3",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblYLwXLLPP4k5NfC",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado": "Notificado",
+            "Marca temporal": 0
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Marca temporal",
+              "displayName": "Marca temporal",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre de completo",
+              "displayName": "Nombre de completo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre usuario",
+              "displayName": "Nombre usuario",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "cursos ",
+              "displayName": "cursos ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "TC",
+                  "value": "TC"
+                },
+                {
+                  "name": "ActM5",
+                  "value": "ActM5"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "mail",
+              "displayName": "mail",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Malenab602@gmail.com",
+                  "value": "Malenab602@gmail.com"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "4d2df0b5-a521-41a3-807a-ae098ea3691e",
+      "name": "Airtable - Marcar Notificado",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        -2560,
+        224
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "yHTScRCQRozerSHm",
+          "name": "Airtable account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "malenab602@gmail.com",
+        "subject": "=[APROBACION] Confirmacion de inscripcion - {{$json['Nombre de completo']}}",
+        "message": "=Nueva inscripcion pendiente de aprobacion.\n\nAlumno: {{$json['Nombre de completo']}}\nCurso: {{$json.cursos}}\nMail: {{$json.mail}}\n\nMensaje propuesto por la IA:\n{{$json.MensajeIA}}\n\nResponde este correo con SI para aprobar el envio o NO para rechazarlo.",
+        "options": {}
+      },
+      "id": "57b1054e-4e70-4a9e-9010-a23831f4747a",
+      "name": "Gmail - Pedir Aprobacion Humana",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -2784,
+        416
+      ],
+      "webhookId": "c17ecee3-bc38-45ea-8ce4-56d058899331",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mAUT1MPUfT5TuwXw",
+          "name": "Gmail account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appmO1C9mQJlqprs3",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblYLwXLLPP4k5NfC",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado": "Esperando Aprobacion",
+            "Marca temporal": 0,
+            "id": "={{$('IF - Datos Completos').item.json.id}}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Marca temporal",
+              "displayName": "Marca temporal",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre de completo",
+              "displayName": "Nombre de completo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre usuario",
+              "displayName": "Nombre usuario",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "cursos ",
+              "displayName": "cursos ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "TC",
+                  "value": "TC"
+                },
+                {
+                  "name": "ActM5",
+                  "value": "ActM5"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "mail",
+              "displayName": "mail",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Malenab602@gmail.com",
+                  "value": "Malenab602@gmail.com"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "6035c22c-cfbb-4f7f-8340-cfe380f83537",
+      "name": "Airtable - Marcar Esperando Aprobacion",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        -2560,
+        416
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "yHTScRCQRozerSHm",
+          "name": "Airtable account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "options": {}
+      },
+      "id": "167250bb-3851-4904-abbe-98ab0a9ceedb",
+      "name": "Wait - Respuesta del Admin",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -2336,
+        416
+      ],
+      "webhookId": "wait-aprobacion-certificados"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cond-aprobado",
+              "leftValue": "={{$json.body.aprobado || $json.query.aprobado}}",
+              "rightValue": "si",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8a3b69f5-dfaa-46f9-93b0-c2e61488e4ae",
+      "name": "IF - Aprobado por Humano",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -2112,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$('Parsear Respuesta IA').item.json.mail}}",
+        "subject": "=Confirmacion de inscripcion - {{$('Parsear Respuesta IA').item.json.cursos}}",
+        "message": "={{$('Parsear Respuesta IA').item.json.MensajeIA}}",
+        "options": {}
+      },
+      "id": "1f3faca7-6832-4ed6-9c4d-b09f199312c8",
+      "name": "Gmail - Envio Final al Alumno",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1888,
+        320
+      ],
+      "webhookId": "1d8aae9d-e5c0-4b27-82e5-a397c7567267",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mAUT1MPUfT5TuwXw",
+          "name": "Gmail account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appmO1C9mQJlqprs3",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblYLwXLLPP4k5NfC",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado": "Enviado",
+            "Marca temporal": 0,
+            "id": "={{$('IF - Datos Completos').item.json.id}}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Marca temporal",
+              "displayName": "Marca temporal",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre de completo",
+              "displayName": "Nombre de completo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre usuario",
+              "displayName": "Nombre usuario",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "cursos ",
+              "displayName": "cursos ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "TC",
+                  "value": "TC"
+                },
+                {
+                  "name": "ActM5",
+                  "value": "ActM5"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "mail",
+              "displayName": "mail",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Malenab602@gmail.com",
+                  "value": "Malenab602@gmail.com"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "bbcbd85a-e1df-4d3d-87f7-e6373f8d0860",
+      "name": "Airtable - Marcar Enviado Final",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        -1664,
+        320
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "yHTScRCQRozerSHm",
+          "name": "Airtable account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appmO1C9mQJlqprs3",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblYLwXLLPP4k5NfC",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado": "Rechazado",
+            "id": "={{$('Airtable - Marcar Esperando Aprobacion').item.json.id}}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Marca temporal",
+              "displayName": "Marca temporal",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre de completo",
+              "displayName": "Nombre de completo",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre usuario",
+              "displayName": "Nombre usuario",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "cursos ",
+              "displayName": "cursos ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "TC",
+                  "value": "TC"
+                },
+                {
+                  "name": "ActM5",
+                  "value": "ActM5"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "mail",
+              "displayName": "mail",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Malenab602@gmail.com",
+                  "value": "Malenab602@gmail.com"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "46eb54d3-e2b9-4426-93e4-4b9d73ed2946",
+      "name": "Airtable - Marcar Rechazado",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        -1888,
+        512
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "yHTScRCQRozerSHm",
+          "name": "Airtable account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Airtable Trigger - Nueva Solicitud": {
+      "main": [
+        [
+          {
+            "node": "IF - Datos Completos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Datos Completos": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Buscar Certificado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Airtable - Registrar Error Datos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable - Buscar Certificado": {
+      "main": [
+        [
+          {
+            "node": "Evaluar Resultado Busqueda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluar Resultado Busqueda": {
+      "main": [
+        [
+          {
+            "node": "IA - Redactar Mensaje (HTTP Request)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IA - Redactar Mensaje (HTTP Request)": {
+      "main": [
+        [
+          {
+            "node": "Parsear Respuesta IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsear Respuesta IA": {
+      "main": [
+        [
+          {
+            "node": "IF - Ya Tiene Certificado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Ya Tiene Certificado": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Aviso Certificado Existente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gmail - Pedir Aprobacion Humana",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Aviso Certificado Existente": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Marcar Notificado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Pedir Aprobacion Humana": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Marcar Esperando Aprobacion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable - Marcar Esperando Aprobacion": {
+      "main": [
+        [
+          {
+            "node": "Wait - Respuesta del Admin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait - Respuesta del Admin": {
+      "main": [
+        [
+          {
+            "node": "IF - Aprobado por Humano",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Aprobado por Humano": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Envio Final al Alumno",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Airtable - Marcar Rechazado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Envio Final al Alumno": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Marcar Enviado Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4162720b-4331-4d2f-88c0-719516cd3b8a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "eddbce3912a65b2878b7ee27cb8d806486496cc5374c652046f1dabe17dca60c"
+  },
+  "nodeGroups": [],
+  "id": "pRrOq1ZEZIOEFXXT",
+  "tags": []
+}
