@@ -3,7 +3,7 @@
 Ecosistema de automatización IA: n8n + Airtable + Google Gemini + Gmail
 
 ## Dashboard de Control
-https://airtable.com/(https://airtable.com/appmO1C9mQJlqprs3/shrOIhiftc5XiYtaY)
+(https://airtable.com/appmO1C9mQJlqprs3/shrOIhiftc5XiYtaY)
 ## Video Demo
 (https://drive.google.com/file/d/1hay4WDAUBJug7eY22N9-Rpep90tctsLr/view?usp=drive_link)
 
