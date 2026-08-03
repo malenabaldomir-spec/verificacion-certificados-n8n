@@ -3,10 +3,9 @@
 Ecosistema de automatización IA: n8n + Airtable + Google Gemini + Gmail
 
 ## Dashboard de Control
-https://airtable.com/[PEGA-ACA-TU-LINK-DE-VISTA-COMPARTIDA]
-
+https://airtable.com/(https://airtable.com/appmO1C9mQJlqprs3/shrOIhiftc5XiYtaY)
 ## Video Demo
-[PEGA-ACA-EL-LINK-CUANDO-LO-TENGAS]
+(https://drive.google.com/file/d/1hay4WDAUBJug7eY22N9-Rpep90tctsLr/view?usp=drive_link)
 
 ## Archivos en este repositorio
 - **Entrega_Final_Verificacion_Certificados.pdf** — arquitectura, esquema de datos, matriz de costos, seguridad
